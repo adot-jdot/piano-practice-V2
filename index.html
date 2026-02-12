@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0f19" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="./src/styles/tokens.css" />
+  <link rel="stylesheet" href="./src/styles/app.css" />
+  <title>Piano Practice V2</title>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="dot"></div>
+        <div>
+          <div class="brand-title">Piano Practice</div>
+          <div class="brand-sub" id="phaseLabel">V2 • Ready</div>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="pill" id="sessionLen">45 min</div>
+        <button class="pill pill-btn" id="hintBtn" title="Use a hint (3 per session)">
+          Hint <span id="hintCount">3</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="stage">
+      <section class="panel">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-kicker" id="movementKicker">Arrival</div>
+            <div class="card-actions">
+              <button class="btn ghost" id="prevBtn">Back</button>
+              <button class="btn ghost" id="skipBtn">Skip</button>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <h1 class="instruction" id="instructionText">Sit comfortably. Today’s focus: fluency over speed.</h1>
+            <p class="sub" id="instructionSub">Tap Begin when your hands are on the keys.</p>
+
+            <div class="row">
+              <button class="btn primary" id="primaryBtn">Begin</button>
+              <button class="btn" id="secondaryBtn" style="display:none;">Start</button>
+            </div>
+
+            <div class="checkin" id="checkinRow" style="display:none;">
+              <button class="btn" data-checkin="clean">✔ Clean</button>
+              <button class="btn" data-checkin="tension">~ Some tension</button>
+              <button class="btn" data-checkin="sloppy">✖ Sloppy</button>
+            </div>
+
+            <div class="tiny" id="statusLine">No audio grading. You play on your real piano. The app conducts.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="instrument">
+        <div class="field-wrap">
+          <canvas id="field" width="1200" height="260" aria-label="Harmonic field"></canvas>
+          <div class="field-overlay">
+            <div class="beat" id="beatDot"></div>
+            <div class="dock">
+              <div class="dock-left">
+                <button class="dock-btn" id="metroBtn">Metronome</button>
+                <div class="dock-bpm">
+                  <span class="tiny muted">BPM</span>
+                  <input id="bpm" type="range" min="40" max="140" value="60" />
+                  <span class="pill" id="bpmVal">60</span>
+                </div>
+              </div>
+              <div class="dock-right">
+                <div class="pill" id="blockTimer">00:00</div>
+                <div class="pill" id="statePill">READY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="keys-wrap">
+          <canvas id="keys" width="1200" height="210" aria-label="Keyboard diagram"></canvas>
+          <div class="fade-label tiny muted" id="fadeLabel">Diagram fades while you play.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
